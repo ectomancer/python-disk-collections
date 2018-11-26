@@ -27,8 +27,9 @@ class TemporaryFileClient(IClient):
 
     def __get_file_path(self, key):
         directory_path = self.__directory.name
-        if 'SSD' in os.environ.keys():
-            directory_path = os.environ['SSD']
+        if os.name == 'nt':
+            if 'SSD' in os.environ.keys():
+                directory_path = os.environ['SSD']
         file_path = os.path.join(directory_path, key)
         return file_path
 
